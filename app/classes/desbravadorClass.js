@@ -91,6 +91,10 @@ exports.Desbravador =  class Desbravador {
 
         })
         
+    }// ================================ fim Salvar Desbravador =============================
+
+    logarDesbravador(connection, login, senha){
+
     }
 
     
