@@ -83,3 +83,8 @@ module.exports.logarDesbravador = (app, req, res)=>{
     res.cookie('login', testelogin);
     console.log(req.cookies);
 }
+
+module.exports.deslogarDesbravador = (app, req, res) =>{
+    
+}
+
