@@ -4,7 +4,7 @@ module.exports = (app) =>{
         app.app.controllers.cadastrarDesbravador.cadastrarDesbravador(app, req, res)
     })
 
-    app.post('/', (req, res) => {
-        
+    app.post('/loginDesbravador', (req, res) => {
+        app.app.controllers.cadastrarDesbravador.logarDesbravador(app, req, res)
     })
 }
