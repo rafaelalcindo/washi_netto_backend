@@ -93,8 +93,35 @@ exports.Desbravador =  class Desbravador {
         
     }// ================================ fim Salvar Desbravador =============================
 
-    logarDesbravador(connection, login, senha){
+    logarDesbravador(connection, login, senha,req ,res){
+        let queryLoginDesbrava  = new PrepareQuery();
+        let queryMontada        = queryLoginDesbrava.verificarLoginQuery(login, senha);
+        let modelDesbravador    = new ModelDesbravador(connection);
+         modelDesbravador.consultar(queryMontada, (error, result) => {
+             let resultado = JSON.parse(JSON.stringify(result));
+            if(error){
+                res.send('[{}]');
+                return;
+            }
+            /*console.log(resultado)
+            console.log(resultado[0].nome)
+            console.log(resultado.id) */
+            if(result[0].nivel == undefined){
+                res.send('[{}]');
+                return;
+            }
 
+            req.session.autenticar = true;
+            req.session.login      = login;
+            req.session.senha      = senha;
+
+            res.cookie('autenticar', true)
+            res.cookie('login', login)
+            res.cookie('senha', senha)
+
+            res.send(result);
+        
+        })
     }
 
     

@@ -6,6 +6,9 @@ exports.ModelDesbravador = class ModelDesbravador{
     salvar(sql_query, callback){
         this._connection.query(sql_query, callback);
     }
-
+    
+    consultar(sql_query, callback){
+        this._connection.query(sql_query, callback);
+    }
     
 }

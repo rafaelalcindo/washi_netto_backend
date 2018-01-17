@@ -78,10 +78,16 @@ module.exports.cadastrarDesbravador =  (app, req, res) =>{
 module.exports.logarDesbravador = (app, req, res)=>{
     let testelogin    = req.body.login;
     let testesenha    = req.body.senha;
-
-    req.session.login = testelogin;
+    
+    let connection = app.config.dbConnection();
+    let desbravador = new Desbravador();
+    
+    desbravador.logarDesbravador(connection, testelogin, testesenha, req,res);
+    
+    
+   /* req.session.login = testelogin;
     res.cookie('login', testelogin);
-    console.log(req.cookies);
+    console.log(req.cookies); */
 }
 
 module.exports.deslogarDesbravador = (app, req, res) =>{
