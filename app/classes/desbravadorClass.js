@@ -124,5 +124,32 @@ exports.Desbravador =  class Desbravador {
         })
     }
 
+    autenticarDesbravador(connection, login, senha, req, res){
+        let queryLoginDesbrava = new PrepareQuery();
+        let queryMontada       = queryLoginDesbrava.verificarLoginQuery(login, senha);
+        let modelDesbravador   = new ModelDesbravador(connection);
+
+        modelDesbravador.consultar(queryMontada, (error, result) => {
+            let resultado = JSON.parse(JSON.stringify(result));
+            if(error){ res.send('[{}]'); return; }
+
+            if(result[0].nivel == undefined){
+                res.send('[{}]');
+                return;
+            }
+
+            req.session.autenticar = true;
+            req.session.login      = login;
+            req.session.senha      = senha;
+
+            res.cookie('autenticar', true)
+            res.cookie('login', login)
+            res.cookie('senha', senha)
+
+            res.send(result);
+
+        })
+    }
+
     
 }

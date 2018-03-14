@@ -82,15 +82,36 @@ module.exports.logarDesbravador = (app, req, res)=>{
     let connection = app.config.dbConnection();
     let desbravador = new Desbravador();
     
-    desbravador.logarDesbravador(connection, testelogin, testesenha, req,res);
-    
-    
+    desbravador.logarDesbravador(connection, testelogin, testesenha, req,res);    
    /* req.session.login = testelogin;
     res.cookie('login', testelogin);
     console.log(req.cookies); */
 }
 
-module.exports.deslogarDesbravador = (app, req, res) =>{
-    
+module.exports.verificarLogin = (app, req, res) =>{
+
+    let connection = app.config.dbConnection();
+    let desbravador = new Desbravador();
+
+    if(req.session.autenticar){
+        //console.log(req.cookies);
+        //res.send('autenticado')
+        desbravador.autenticarDesbravador(connection, req.session.login, req.session.senha, req, res);
+    }else if(req.cookies.autenticar){
+        desbravador.autenticarDesbravador(connection, req.cookies.login, req.cookies.senha, req, res);
+    }else{
+        res.send('[{}]')
+    }
 }
 
+module.exports.deslogarDesbravador = (app, req, res) =>{
+    req.session.destroy();
+    res.clearCookie('autenticar');
+    res.clearCookie('login');
+    res.clearCookie('senha');
+    res.send('{logout: true}')
+}
+
+module.exports.dashBoardInformation = (app, req, res) => {
+    
+}
