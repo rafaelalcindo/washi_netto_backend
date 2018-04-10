@@ -88,11 +88,16 @@ module.exports.logarDesbravador = (app, req, res)=>{
     console.log(req.cookies); */
 }
 
+module.exports.pegarDadosDesbravador = (app, req, res) => {
+    
+}
+
 module.exports.verificarLogin = (app, req, res) =>{
 
     let connection = app.config.dbConnection();
     let desbravador = new Desbravador();
 
+    
     if(req.session.autenticar){
         //console.log(req.cookies);
         //res.send('autenticado')

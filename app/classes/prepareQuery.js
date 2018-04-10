@@ -88,7 +88,7 @@ exports.PrepareQuery = class PrepareQuery{
     // =========================================== Consultas =============================================
     
     verificarLoginQuery(login, senha){
-        let query = "select idDesbravador as 'id', nome_desbravador as 'nome', sobrenome_desbravador as 'sobrenome', nivel_desbravador as 'nivel' from desbravador where login_desbravador = '"+login+"' and senha_desbravador = '"+senha+"' ";
+        let query = "select idDesbravador as 'id', nome_desbravador as 'nome', sobrenome_desbravador as 'sobrenome', nivel_desbravador as 'nivel' from desbravador where login_desbravador = '"+login+"' and senha_desbravador = '"+senha+"'; ";
         return query;
     }
 

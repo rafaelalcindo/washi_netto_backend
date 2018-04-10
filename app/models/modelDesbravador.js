@@ -8,6 +8,7 @@ exports.ModelDesbravador = class ModelDesbravador{
     }
     
     consultar(sql_query, callback){
+        
         this._connection.query(sql_query, callback);
     }
     
