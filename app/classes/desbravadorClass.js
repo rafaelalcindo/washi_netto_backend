@@ -157,5 +157,22 @@ exports.Desbravador =  class Desbravador {
         })
     }
 
+    // =================== pegar dados Desbravador ==========
+
+    buscarDadosPainel(connection, id, req, res){
+        let prepareQuery = new PrepareQuery();
+        let queryMontada = prepareQuery.buscarDadosDesbravadorPainelQuery(id);
+        let modelDesbravador = new ModelDesbravador(connection);
+
+        modelDesbravador.consultar(queryMontada, (error, result) => {
+            if(error){ res.send('[{}]'); return; }
+
+            if(result) {
+                res.send(result);
+            }
+            
+        })
+    }
+
     
 }

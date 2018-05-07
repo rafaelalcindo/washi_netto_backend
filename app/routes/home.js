@@ -10,4 +10,8 @@ module.exports = (app) =>{
     app.get('/cadastrarUnidade', (req, res) => {
         app.app.controllers.home.cadastrarUnidade(app, req, res)
     })
+
+    //================== consultas ================
+
+    
 }

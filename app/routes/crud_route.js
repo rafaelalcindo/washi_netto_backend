@@ -18,4 +18,9 @@ module.exports = (app) =>{
         res.setHeader('Access-Control-Allow-Origin','*')
         app.app.controllers.cadastrarDesbravador.deslogarDesbravador(app, req, res)
     })
+
+    app.post('/infoDadosDesbravadorPainel', (req, res) => {
+        res.setHeader('Access-Control-Allow-Origin','*')
+        app.app.controllers.dadosDesbravadores.dadosPrincipaisPainelDesbravador(app, req, res)
+    })
 }

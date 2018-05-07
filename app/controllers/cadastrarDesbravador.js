@@ -89,6 +89,8 @@ module.exports.logarDesbravador = (app, req, res)=>{
 }
 
 module.exports.pegarDadosDesbravador = (app, req, res) => {
+    let id_desbravador = req.body.id;
+
     
 }
 

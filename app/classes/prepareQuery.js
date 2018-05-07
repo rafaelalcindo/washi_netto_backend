@@ -92,5 +92,15 @@ exports.PrepareQuery = class PrepareQuery{
         return query;
     }
 
+    buscarDadosDesbravadorPainelQuery(id) {
+        let query = "select des.idDesbravador as 'id', des.nome_desbravador as 'nome',";
+        query += "des.sobrenome_desbravador as 'sobrenome',  uni.nome_unidade as 'unidade',";
+        query += "uni.pontuacao_unidade as 'pontuacao_unidade', uni.equipamentos as 'equipamentos',";
+        query += "coin.quant_aguitos as 'aguitos' from desbravador des, aguitos_coin coin, unidades uni";
+        query += " where des.idUnidades = uni.idUnidades and des.idDesbravador = coin.Desbravador_idDesbravador and";
+        query += " des.idDesbravador = "+id+"";
+        return query;
+    }
+
 
 }
