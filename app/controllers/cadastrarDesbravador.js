@@ -88,11 +88,9 @@ module.exports.logarDesbravador = (app, req, res)=>{
     console.log(req.cookies); */
 }
 
-module.exports.pegarDadosDesbravador = (app, req, res) => {
-    let id_desbravador = req.body.id;
 
-    
-}
+
+
 
 module.exports.verificarLogin = (app, req, res) =>{
 
@@ -119,6 +117,47 @@ module.exports.deslogarDesbravador = (app, req, res) =>{
     res.send('{logout: true}')
 }
 
+// Buscar Informações dos Desbravadores ....................................
+
+
 module.exports.dashBoardInformation = (app, req, res) => {
     
 }
+
+module.exports.pegarDadosDesbravador = (app, req, res) => {
+    let id_desbravador = req.body.id;
+
+    let connection = app.config.dbConnection();
+    let desbravador = new Desbravador();
+
+    desbravador.buscarDadosPainel(connection,id_desbravador, req, res);
+}
+
+module.exports.pegarClassesDesbravador = (app, req, res) => {
+    let id_desbravador = req.body.id;    
+
+    let connection = app.config.dbConnection();
+    let desbravador = new Desbravador();
+
+    desbravador.buscarClassesDesbravador(connection, id_desbravador, req, res);
+}
+
+module.exports.pegarEspecialidadeDesbrador = (app, req, res) => {
+    let id_desbravador = req.body.id;
+
+    let connection = app.config.dbConnection();
+    let desbravador = new Desbravador();
+
+    desbravador.buscarEspecialidadeDesbravador(connection, id_desbravador, req, res);
+}
+
+module.exports.pegarConquistasDebravador = (app, req, res) => {
+    let id_desbravador = req.body.id;
+
+    let connection = app.config.dbConnection();
+    let desbravador = new Desbravador();
+
+    desbravador.buscarConquistaDesbravador(connection, id_desbravador, req, res);
+}
+
+

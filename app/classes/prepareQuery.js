@@ -102,5 +102,21 @@ exports.PrepareQuery = class PrepareQuery{
         return query;
     }
 
+    buscarClassesDesbravador(id) {
+        let query = "select nome_classe as 'classe', data_conclusao as 'conclusao' from classes where idDesbravador = "+id;
+        return query;
+    }
+
+    buscarEspecialidadeDesbravador(id) {
+        let query = "select nome_especialidade as 'especialidade', area, conclusao from especialidades where idDesbravador = "+id;
+        return query;
+    }
+
+    buscarConquistasDesbravador(id) {
+        let query = "select categoria_conquista as 'categoria', nome_conquista as 'nome', descricao_conquista as 'descricao', data_conquista as 'data' ";
+        query += "from conquistas where desbravador_idDesbravador = "+id;
+        return query;
+    }
+
 
 }

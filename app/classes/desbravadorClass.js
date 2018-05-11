@@ -169,9 +169,53 @@ exports.Desbravador =  class Desbravador {
 
             if(result) {
                 res.send(result);
-            }
-            
+            }            
         })
+    }
+
+    buscarClassesDesbravador(connection, id, req, res) {
+        
+        let prepareQuery = new PrepareQuery();
+        let queryMontada = prepareQuery.buscarClassesDesbravador(id);
+        let modelDesbravador = new ModelDesbravador(connection);
+
+        modelDesbravador.consultar(queryMontada,(error, result) => {
+            if(error){
+                console.log('error: ',error)
+                 res.send('[{}]'); return; }
+
+            if(result) {
+                res.send(result);
+            }
+        })
+    }
+
+    buscarEspecialidadeDesbravador(connection, id, req, res) {
+        let prepareQuery = new PrepareQuery();
+        let queryMontada = prepareQuery.buscarEspecialidadeDesbravador(id);
+        let modelDesbravador = new ModelDesbravador(connection);
+
+        modelDesbravador.consultar(queryMontada, (error, result) => {
+            if(error){ res.send('[{}]'); return; }
+
+            if(result) {
+                res.send(result);
+            }
+        });
+    }
+
+    buscarConquistaDesbravador(connection, id, req, res) {
+        let prepareQuery = new PrepareQuery();
+        let queryMontada = prepareQuery.buscarConquistasDesbravador(id);
+        let modelDesbravador = new ModelDesbravador(connection);
+
+        modelDesbravador.consultar(queryMontada,(error, result) => {
+            if(error) { res.send('[{}]'); return; }
+
+            if(result) {
+                res.send(result);
+            }
+        });
     }
 
     
