@@ -11,5 +11,9 @@ exports.ModelDesbravador = class ModelDesbravador{
         
         this._connection.query(sql_query, callback);
     }
+
+    atualizar(sql_query, callback) {
+        this._connection.query(sql_query, callback);
+    }
     
 }

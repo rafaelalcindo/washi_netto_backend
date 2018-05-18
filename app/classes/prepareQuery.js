@@ -118,5 +118,45 @@ exports.PrepareQuery = class PrepareQuery{
         return query;
     }
 
+    // =====================================================================
+    //                      Unidade Inset Consultas
+    //======================================================================
+
+    pegarpontosUnidade(id){
+        let query = "select pontuacao_unidade from unidades where idUnidades = "+id;
+        return query;
+    }
+
+    inserirPontuacaoUnidade(historico, dataHoje){
+        let query = "insert into historico_pontuacao_unidade ( titulo, descricao, pontos_guanhos, data_conclusao, idUnidades ) values ('"+historico.titulo+"', '"+historico.descricao+"', "+historico.pontosGanhos+", '"+dataHoje+"', "+historico.id_unidade+")";
+        return query;
+    }
+
+    atualizarPontuaçãoTotalUnidade(pontos, idUnidade){
+        let query = "update unidades set pontuacao_unidade = "+pontos+" where idUnidades = "+idUnidade;
+        return query;
+    }
+
+
+    //============================================================================
+    //                      Consultas e inserção de Especialidades
+    //============================================================================
+
+    consultarQtdEspecialidadeAno(id){
+        let query = "select count(*) 'quant_especialidade_ano' from especialidades where idDesbravador = "+id+" and cadastrado between '2018-01-02' and '2018-12-29'";
+        return query;
+    }
+
+    consultaQtdEspecialidadeTotal(id){
+        let query = "select count(*) 'quant_especialidade' from especialidades where idDesbravador = "+id;
+        return query;
+    }
+
+    inserirEspecialidade(especialidade){
+        let query = "insert into especialidades (idDesbravador ,nome_especialidade, area, instrutor, conclusao, autor, cadastrado)";
+        query += "values ("+especialidade.idDesbravador+",'"+especialidade.nome_especialidade+"', '"+especialidade.area+"',";
+        query += " '"+especialidade.instrutor+"', '"+especialidade.conclusao+"', '"+especialidade.autor+"', '"+especialidade.cadastrado+"') ";
+        return query;
+    }
 
 }
