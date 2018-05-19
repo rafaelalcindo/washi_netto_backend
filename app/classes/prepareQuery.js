@@ -159,4 +159,9 @@ exports.PrepareQuery = class PrepareQuery{
         return query;
     }
 
+    consultarListaEspecialidadeDesbravador(id){
+        let query = "select * from especialidades where idDesbravador = "+id;
+        return query;
+    }
+
 }

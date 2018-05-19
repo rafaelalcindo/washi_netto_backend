@@ -44,8 +44,54 @@ exports.Especialidades = class Especialidades {
             }else{
                 res.send('[{"resultado": 0}]');
             }
-        });
-        
+        });        
     }
+
+    consultarEspecialidadeAno(connection, id_desbravador, req, res) {
+        let prepareQuery = new PrepareQuery();
+        let queryMontada = prepareQuery.consultarQtdEspecialidadeAno(id_desbravador);
+        let modelDesbravador = new ModelDesbravador(connection);
+
+        modelDesbravador.consultar(queryMontada, (error, result) => {
+            if(error){
+                res.send('[{"resultado": 0}]');
+                return;
+            } else if(result) {
+                res.send(result);
+            }
+        });
+    }
+
+    consultaEspecialidadeTotal(connection, id_desbravador, req, res) {
+        let prepareQuery  = new PrepareQuery();
+        let queryMontada  = prepareQuery.consultaQtdEspecialidadeTotal(id_desbravador);
+        let modelDesbravador = new ModelDesbravador(connection);
+
+        modelDesbravador.consultar(queryMontada, (error, result) => {
+            if(error) {
+                res.send('[{"resultado": 0}]');
+                return;
+            } else if(result) {
+                res.send(result);
+            }
+        });
+    }
+
+    consultaEspecialidadeDesbravador(connection, id_desbravador, req, res) {
+        let prepareQuery = new PrepareQuery();
+        let queryMontada = prepareQuery.consultarListaEspecialidadeDesbravador(id_desbravador);
+        let modelDesbravador = new ModelDesbravador(connection);
+
+        modelDesbravador.consultar(queryMontada, (error, result) => {
+            if(error) {
+                res.send('[{"resultado": 0}]');
+                return;
+            } else if(result) {
+                res.send(result);
+            }
+        });
+    }
+
+
 
 }
