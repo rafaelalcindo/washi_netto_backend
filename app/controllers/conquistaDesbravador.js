@@ -49,3 +49,9 @@ module.exports.consultarEspecialidadeDesbravadorLista = (app, req, res) => {
     especialidade.consultaEspecialidadeDesbravador(connection, id_desbravador, req, res);
     
 }
+
+module.exports.consultarQtdEspecialidadePorDesbravador = (app, req, res) => {
+    let especialidade = new Especialidades();
+    let connection    = app.config.dbConnection();
+    especialidade.cunsultaQtdEspecialidadeDesbravador(connection, req, res);
+}

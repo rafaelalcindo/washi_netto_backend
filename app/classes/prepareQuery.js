@@ -164,4 +164,11 @@ exports.PrepareQuery = class PrepareQuery{
         return query;
     }
 
+    consultarQtdMaisEspecialidade(){
+        let query = "select count(*) as 'qtd_especialidade', de.nome_desbravador as 'nome',";
+        query += "de.sobrenome_desbravador as 'sobrenome', de.idDesbravador as 'id_des' from especialidades es, desbravador de ";
+        query += "where es.idDesbravador = de.idDesbravador group by es.idDesbravador";
+        return query;
+    }
+
 }

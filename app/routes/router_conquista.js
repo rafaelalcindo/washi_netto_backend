@@ -18,4 +18,9 @@ module.exports = (app) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         app.app.controllers.conquistaDesbravador.consultarEspecialidadeDesbravadorLista(app, req, res);
     });
+
+    app.get('/conquista/especialidade/qtdTodosDesbrava', (req, res) => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        app.app.controllers.conquistaDesbravador.consultarQtdEspecialidadePorDesbravador(app, req, res);
+    });
 }

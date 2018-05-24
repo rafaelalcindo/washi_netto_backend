@@ -92,6 +92,21 @@ exports.Especialidades = class Especialidades {
         });
     }
 
+    cunsultaQtdEspecialidadeDesbravador(connection,  req, res) {
+        let prepareQuery = new PrepareQuery();
+        let queryMontada = prepareQuery.consultarQtdMaisEspecialidade();
+        let modelDesbravador = new ModelDesbravador(connection);
+
+        modelDesbravador.consultar(queryMontada, (error, result) =>{
+            if(error){
+                console.log(error);
+                res.send('[{"resultado": 0}]');
+            } else if(result) {
+                res.send(result);
+            }
+        });
+    }
+
 
 
 }
