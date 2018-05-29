@@ -171,4 +171,15 @@ exports.PrepareQuery = class PrepareQuery{
         return query;
     }
 
+    //=======================================================
+    //|                        EVENTOS
+    //=======================================================
+
+    inserirEventos(eventos) {
+        let query = "insert into eventos (eventos_titulo, eventos_descricao, eventos_data)";
+        query += "values";
+        query += "('"+eventos.titulo+"','"+eventos.descricao+"','"+eventos.data+"')";
+        return query;
+    }
+
 }
