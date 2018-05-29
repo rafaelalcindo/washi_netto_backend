@@ -14,3 +14,15 @@ module.exports.inserirEventos = (app, req, res) => {
 
     eventos.inserirEvento(connection, eventos, req, res);
 }
+
+module.exports.ligarDesbravadorEventos = (app, req, res) => {
+    let idEvento      = req.body.idEvento;
+    let idDesbravador = req.body.idDesbravador;
+    
+    let eventos = new Eventos();
+
+    let connection = app.config.dbConnection();
+
+    eventos.ligarDesbravadorEventos(connection,idDesbravador, idEvento, req,res);
+
+}

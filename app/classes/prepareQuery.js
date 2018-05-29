@@ -182,4 +182,11 @@ exports.PrepareQuery = class PrepareQuery{
         return query;
     }
 
+    ligarDesbravadorEvento(idEvento, idDesbravador){
+        let query = "insert into eventos_has_desbravador (ideventos, idDesbravador)";
+        query += "values";
+        query += "("+idEvento+","+idDesbravador+")";
+        return query;
+    }
+
 }

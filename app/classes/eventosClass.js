@@ -33,4 +33,18 @@ exports.Eventos = class Eventos {
         });
     }
 
+    ligarDesbravadorEventos(connection, idDesbravador, idEvento, req, res) {
+        let prepareQuery = new PrepareQuery();
+        let queryMontada = prepareQuery.ligarDesbravadorEvento(idEvento, idDesbravador);
+        let modelDesbravador = new ModelDesbravador(connection);
+
+        modelDesbravador.salvar(queryMontada, (error, result) => {
+            if(result) {
+                res.send('[{"resultado": 1}]');
+            } else {
+                res.send('[{"resultado": 0}]');
+            }
+        });
+    }
+
 }
