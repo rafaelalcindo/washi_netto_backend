@@ -99,8 +99,8 @@ exports.Desbravador =  class Desbravador {
         let queryMontada        = queryLoginDesbrava.verificarLoginQuery(login, senha);         
         let modelDesbravador    = new ModelDesbravador(connection);        
          modelDesbravador.consultar(queryMontada, (error, result) => {
-             
-             let resultado = JSON.parse(JSON.stringify(result));
+
+             //let resultado = JSON.parse(JSON.stringify(result));
              //console.log('error: ', error);
             if(error){
                 res.send('[{}]');

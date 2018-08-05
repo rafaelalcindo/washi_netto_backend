@@ -108,7 +108,7 @@ exports.PrepareQuery = class PrepareQuery{
     }
 
     buscarEspecialidadeDesbravador(id) {
-        let query = "select nome_especialidade as 'especialidade', area, conclusao from especialidades where idDesbravador = "+id;
+        let query = "select nome_especialidade as 'especialidade', area, conclusao from especialidades where idDesbravador = "+id+" order by area desc";
         return query;
     }
 
@@ -134,6 +134,18 @@ exports.PrepareQuery = class PrepareQuery{
 
     atualizarPontuaçãoTotalUnidade(pontos, idUnidade){
         let query = "update unidades set pontuacao_unidade = "+pontos+" where idUnidades = "+idUnidade;
+        return query;
+    }
+
+    inserirEquipamentosUnidade(idUnidade, equipamentos) {
+        let query = "update unidades set equipamentos = '"+equipamentos+"' ";
+        query += "where idUnidades = "+idUnidade+" ";
+        return query;
+    }
+
+    pegarInfoUnidade(id) {
+        let query = "select idUnidades as 'idUnidade', nome_unidade as 'unidade', pontuacao_unidade as 'pontos_unidade' , ";
+        query += "equipamentos as 'equipamentos' from unidades where idUnidades = "+id+" ";
         return query;
     }
 
@@ -186,6 +198,29 @@ exports.PrepareQuery = class PrepareQuery{
         let query = "insert into eventos_has_desbravador (ideventos, idDesbravador)";
         query += "values";
         query += "("+idEvento+","+idDesbravador+")";
+        return query;
+    }
+
+    listarEventosPorData(){
+        let query = "select eventos_titulo as 'titulo', eventos_descricao as 'descricao', eventos_data as 'data' ";
+        query += "from eventos order by eventos_data desc";
+        return query;
+    }
+
+    listarQuemFoiEvento(idEvento) {
+        let query = "select d.nome_desbravador as 'nome', d.sobrenome_desbravador as 'sobrenome', u.nome_unidade as 'unidade' ";
+        query += "from desbravador d RIGHT JOIN eventos_has_desbravador ehd on d.idDesbravador = ehd.idDesbravador ";
+        query += "RIGHT JOIN unidades u on u.idUnidades = d.idUnidades where ";
+        query += "ehd.ideventos = (select ideventos from eventos where ideventos = "+idEvento+") ";
+        query += "order by u.idUnidades desc ";
+        return query;
+    }
+
+    listarTotalParticipantesEvento(idEvento) {
+        let query = "select count(*) as 'total_particiantes' ";
+        query += "from desbravador d RIGHT JOIN eventos_has_desbravador ehd on d.idDesbravador = ehd.idDesbravador ";
+        query += "RIGHT JOIN unidades u on u.idUnidades = d.idUnidades where ";
+        query += "ehd.ideventos = (select ideventos from eventos where ideventos = "+idEvento+") ";
         return query;
     }
 

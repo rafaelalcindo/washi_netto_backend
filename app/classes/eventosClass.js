@@ -47,4 +47,39 @@ exports.Eventos = class Eventos {
         });
     }
 
+    consultarEventosPorData(connection, req, res) {
+        let prepareQuery = new PrepareQuery();
+        let queryMontada = prepareQuery.listarEventosPorData();
+        queryConsultar( connection,queryMontada,req, res);
+    }
+
+    consultarParticipantesDoEvento(connection, idEvento, req, res) {
+        let prepareQuery = new PrepareQuery();
+        let queryMontada = prepareQuery.listarQuemFoiEvento(idEvento);
+        queryConsultar(connection, queryMontada, req, res);
+    }
+
+    consultarQuantidadeParticipanteEvento(connection, idEvento, req, res) {
+        let prepareQuery = new PrepareQuery();
+        let queryMontada = prepareQuery.listarTotalParticipantesEvento(idEvento);
+        queryConsultar(connection, queryMontada, req, res);
+    }
+
+}
+// ======================================================================================
+//|                        Fim da Classe e começo dos Método Helper
+//=======================================================================================
+
+function queryConsultar(connection, queryPreparada, req, res) {
+    let modelDesbravador = new ModelDesbravador(connection);
+
+    modelDesbravador.consultar(queryPreparada, (error, result) => {
+        if(error) {
+            res.send('[{"resultado": 0}]');
+            //console.log('erro: ',error);
+            return;
+        } else if(result) {
+            res.send(result);
+        }
+    });
 }

@@ -26,3 +26,23 @@ module.exports.ligarDesbravadorEventos = (app, req, res) => {
     eventos.ligarDesbravadorEventos(connection,idDesbravador, idEvento, req,res);
 
 }
+
+module.exports.consultarEventosPorData = (app, req, res) => {
+    let eventos = new Eventos();
+    let connection = app.config.dbConnection();
+    eventos.consultarEventosPorData(connection,req,res);
+}
+
+module.exports.consultarParticipantesEvento = (app, req, res) => {
+    let idEvento = req.body.idEvento;
+    let eventos = new Eventos();
+    let connection = app.config.dbConnection();
+    eventos.consultarParticipantesDoEvento(connection, idEvento, req, res);
+}
+
+module.exports.consultarQuantidadeParticipanteEvento = (app, req, res) => {
+    let idEvento = req.body.idEvento;
+    let eventos  = new Eventos();
+    let connection = app.config.dbConnection();
+    eventos.consultarQuantidadeParticipanteEvento(connection, idEvento, req, res);
+}

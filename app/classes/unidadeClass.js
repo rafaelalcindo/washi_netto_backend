@@ -68,8 +68,44 @@ exports.Unidade = class Unidade {
                 })
 
             }            
-        })        
+        })
+    }// fim da função
+
+    inserirEquipamentosUnidade(connection, idUnidade, equipamentos,req, res) {
+        let prepareQuery = new PrepareQuery();
+        let queryMontada = prepareQuery.inserirEquipamentosUnidade(idUnidade, equipamentos);
+        queryAtualizar(connection, queryMontada, req, res);
     }
 
+    pegarDadosUnidade(connection, idUnidade, req, res) {
+        let prepareQuery = new PrepareQuery();
+        let queryMontada = prepareQuery.pegarInfoUnidade(idUnidade);
+        queryConsultar(connection, queryMontada, req, res);
+    }
 
+}
+
+function queryAtualizar(connection, queryPreparada, req, res) {
+    let modelDesbravador = new ModelDesbravador(connection);
+
+    modelDesbravador.atualizar(queryPreparada, (error, result) => {
+        if(result){
+            res.send('[{"resultado": "1"}]');
+        } else {
+            res.send('[{"resultado": "0"}]');
+        }
+    })
+}
+
+function queryConsultar(connection, queryPreparada, req, res) {
+    let modelDesbravador = new ModelDesbravador(connection);
+    modelDesbravador.consultar(queryPreparada, (error, result) => {
+        if(error) {
+            res.send('[{"resultado": 0}]');
+            //console.log('erro: ',error);
+            return;
+        } else if(result) {
+            res.send(result);
+        }
+    });
 }
