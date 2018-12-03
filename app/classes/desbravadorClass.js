@@ -95,13 +95,14 @@ exports.Desbravador =  class Desbravador {
 
     logarDesbravador(connection, login, senha,req ,res){
         let queryLoginDesbrava  = new PrepareQuery();
-        
+
         let queryMontada        = queryLoginDesbrava.verificarLoginQuery(login, senha);         
         let modelDesbravador    = new ModelDesbravador(connection);        
          modelDesbravador.consultar(queryMontada, (error, result) => {
 
              //let resultado = JSON.parse(JSON.stringify(result));
              //console.log('error: ', error);
+
             if(error){
                 res.send('[{}]');
                 return;
@@ -110,6 +111,7 @@ exports.Desbravador =  class Desbravador {
             console.log(resultado[0].nome)
             console.log(resultado.id) */
             if(result != ''){
+
                 if(result[0].nivel == undefined){
                     res.send('[{}]');
                     return;
@@ -124,7 +126,7 @@ exports.Desbravador =  class Desbravador {
             res.cookie('autenticar', true)
             res.cookie('login', login)
             res.cookie('senha', senha)
-
+            console.log('deu certo');
             res.send(result);
         
         })
